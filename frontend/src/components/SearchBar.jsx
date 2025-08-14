@@ -1,36 +1,32 @@
+import React, { useState } from 'react';
+import { FaSearch } from 'react-icons/fa';
 
-import React, { useState } from 'react'
-import { FaSearch } from "react-icons/fa";
-function SearchBar({ onSearch }) {
-    const [city, setCity] = useState('');
+const SearchBar = ({ onSearch }) => {
+  const [city, setCity] = useState('');
 
-    function handleFormSubit(event) {
-        event.preventDefault(); //Stop Browser from refreshing pages
-        const trimmedCity = city.trim();
-
-        if (trimmedCity.length > 0) {
-            onSearch(trimmedCity);
-        }
-
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (city.trim()) {
+      onSearch(city);
     }
+  };
 
-    function handleInputChange(event) {
-        setCity(event.target.value);
-    }
-    return (
-
-        <form className='search-form' onClick={handleFormSubit}>
-            <div className='search-container'>
-                <input type="text" placeholder='Enter City name ' className='search-input'
-                    onChange={handleInputChange} />
-
-                <button type='submit' className='search-button'><FaSearch /></button>
-
-
-            </div>
-        </form>
-    )
-}
+  return (
+    <form onSubmit={handleSubmit} className="search-form">
+      <div className="search-container">
+        <input
+          type="text"
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+          placeholder="Enter city name"
+          className="search-input"
+        />
+        <button type="submit" className="search-button">
+          <FaSearch />
+        </button>
+      </div>
+    </form>
+  );
+};
 
 export default SearchBar;
-
