@@ -36,7 +36,7 @@ function App() {
        )}
        
        {
-        weatherData && <WeatherCard data={weatherData}/>
+        weatherData && <WeatherCard weatherData={weatherData}/>
        }
     </div>
   </div>
